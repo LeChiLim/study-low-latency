@@ -1,5 +1,3 @@
-# study-low-latency
-
 Low Latency Book Study
 =====
 
