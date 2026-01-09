@@ -5,12 +5,11 @@
 #include <sys/syscall.h>
 
 namespace Common{
-    
-    template <typename Y, typename... A>
-    inline auto createAndStartThread(int core_id, const std::string &name
-    T && func, A &&... args) noexcept 
+
+    template <typename T, typename... A>
+    inline auto createAndStartThread(int core_id, const std::string &name, T && func, A &&... args) noexcept 
     {
-        std::atmomic<bool> running(false), failed(false);
+        std::atomic<bool> running(false), failed(false);
 
         auto thread_body = [&] {
             if (core_id >= 0 && ! setThreadCore(core_id)){
